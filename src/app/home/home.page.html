@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+       <h1>Votaciones</h1>  
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+         <h2>Votaciones abiertas</h2>
+      </ion-col>
+    </ion-row>
+    <ng-container>
+        <ion-row *ngFor="let vote of listVotes">
+          <app-votes-info [vote]="vote" (click)="goToVotation(vote.uuid)" ></app-votes-info>
+        </ion-row>
+    </ng-container>
+    
+  </ion-grid>
+</ion-content>

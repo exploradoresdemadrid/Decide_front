@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" >
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      Introduce el codigo de tu grupo aquí
+      <ion-input  formControlName ="code" placeholder="Código" >
+
+      </ion-input>
+    </ion-col>
+    
+
+  </ion-row>
+</ion-grid>
+</form>
+<ion-button (click)="sendCode()">Enviar</ion-button>
+</ion-content>

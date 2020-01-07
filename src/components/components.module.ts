@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VotesInfoComponent } from './votes-info/votes-info.component';
+import { RangeSelectionComponent } from './range-selection/range-selection.component';
 
 
 @NgModule({
-  declarations: [VotesInfoComponent],
+  declarations: [VotesInfoComponent, RangeSelectionComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -18,7 +19,8 @@ import { VotesInfoComponent } from './votes-info/votes-info.component';
   ],
   exports: [
     CommonModule,
-    VotesInfoComponent
+    VotesInfoComponent,
+    RangeSelectionComponent
   ],
   entryComponents: [],
 })

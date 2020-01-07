@@ -5,19 +5,14 @@ import { Injectable } from '@angular/core';
 import { Entity } from './base-entity.model';
 
 export class Vote extends Entity {
-  name: string;
-  id:number;
-  numVotes:number;
-  numVotesOk: number;
-  numVotesKo:number;
-  numVotesNull:number;
-  numVotesAbst:number;
-  status:string;
-  description:string;
+
+  title: string;
+  description: string;
+  status: string
 
 
   getName() {
-    return `${this.name}`;
+    return `${this.title}`;
   }
 }
 
@@ -38,5 +33,23 @@ export class VoteService extends BaseEntityService<Vote> {
     return {
       entities: [],
     };
+  }
+
+  selectVotingById(id :string){
+    return this.selectById(id)
+  }
+
+  getVotes(){
+    const request = this.getRequest('votings')
+    request.subscribe(votes => this.dispatchSuccess({ entities: this.createList(votes) }));
+    return request
+  }
+
+  getVotingById(id:string){
+    const reuqets = this.getRequest('votings/' + id)
+    reuqets.subscribe(voting => this.dispatchSuccess({
+      entities: this.upsertList(voting)
+    }))
+    return reuqets
   }
 }

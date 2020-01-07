@@ -16,16 +16,26 @@
        <h1>Votaciones</h1>  
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-         <h2>Votaciones abiertas</h2>
-      </ion-col>
-    </ion-row>
-    <ng-container>
-        <ion-row *ngFor="let vote of listVotes">
-          <app-votes-info [vote]="vote" (click)="goToVotation(vote.uuid)" ></app-votes-info>
-        </ion-row>
-    </ng-container>
-    
+
+    <ion-list >
+      <ng-container *ngIf="votes$ | async as votes">
+         <ion-item class="item-thumbnail-left" *ngFor="let vote of votes"  (click)="goToVotation(vote.id)">
+              <h3>{{vote.title}}</h3>
+             <p>{{vote.status}}</p>
+          </ion-item>
+      </ng-container>
+      <ion-item class="item-thumbnail-left"  (click)="goToVotation('1')">
+        <h3>Presupuestos 2020</h3>
+       <p>Abierta</p>
+    </ion-item>
+    <ion-item class="item-thumbnail-left"  (click)="goToVotation('1')">
+      <h3>Estatutos </h3>
+     <p>Cerrada</p>
+  </ion-item>
+  <ion-item class="item-thumbnail-left"  (click)="goToVotation('1')">
+    <h3>Consejo de escuela </h3>
+   <p>Cerrada</p>
+</ion-item>
+      </ion-list>
   </ion-grid>
 </ion-content>

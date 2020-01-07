@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'src/shared/shared.module';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RequestInterceptor } from 'src/shared/interceptors/request.interceptor';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
   
   ],
   bootstrap: [AppComponent]

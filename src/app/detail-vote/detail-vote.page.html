@@ -1,13 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalle de la votacion</ion-title>
+    <ion-title>{{vote?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <h1>
-    {{vote.name}}
+    {{vote?.description}}
   </h1>
+  <p>
+    Type voting
+  </p>
+
+  <div *ngFor="let question of vote?.questions">
+    <h2>{{question.title}}</h2>
+    <p>{{question.description}}</p>
+    <ng-container *ngIf="question.type === 'range'">
+      <app-range-selection *ngFor="let option of question.options"[option]='option' (selectNumVotes)="hasOptionValue($event, option)" ></app-range-selection>
+    </ng-container>
+
+    <ng-container>
+
+    </ng-container>
+
+    
+   
+  </div>
+
+  
+
   
 
 </ion-content>
+
+<ion-footer>
+
+  <ion-button (click)="senVoting()">
+Enviar
+  </ion-button>
+</ion-footer>

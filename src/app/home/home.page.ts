@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Vote, VoteService } from 'src/entities/vote';
+import { OverlaysService } from 'src/shared/overlays';
+
 
 @Component({
   selector: 'app-home',
@@ -7,51 +10,21 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  list_votes =[
-    {
-        name: 'Vote_1',
-        uuid:1,
-        numVotes: 1,
-        numVotesOk:1,
-        numVotesKo:0
-    },
-    {
-        name: 'Vote_2',
-        uuid:2,
-        numVotes: 10,
-        numVotesOk:9,
-        numVotesKo:1
-    },    {
-        name: 'Vote_3',
-        uuid:3,
-        numVotes: 5,
-        numVotesOk:1,
-        numVotesKo:4
-    },    {
-        name: 'Vote_4',
-        uuid:4,
-        numVotes: 8,
-        numVotesOk:4,
-        numVotesKo:4
-    },   {
-        name: 'Vote_5',
-        uuid:5,
-        numVotes: 3,
-        numVotesOk:0,
-        numVotesKo:0
-    },
-]
 
-listVotes
+
+votes$
   constructor(
-    private router :Router
+    private router :Router,
+    private overlayService :OverlaysService,
+    private votesService :VoteService
    ) {}
 
   ionViewWillEnter(){
-    this.listVotes = this.list_votes
+    this.overlayService.requestWithLoaderAndError(()=>this.votesService.getVotes())
+    this.votes$ = this.votesService.selectAll()
   }
 
   goToVotation(uuid){
-    this.router.navigate(['/detail-vote', uuid])
+    this.router.navigate(['/detail-vote', 1])
   }
 }

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>my-group</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img [src]="user.img">
+  
+ <ul>
+   <li>{{user.name}}</li>
+   <li>Personas asociadas: {{user.number}}</li>
+   <li>Votos disponibles: {{user.available_votes}}</li>
+ </ul>
+
+</ion-content>

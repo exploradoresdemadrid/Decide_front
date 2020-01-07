@@ -5,9 +5,10 @@ import { Injectable } from '@angular/core';
 import { Entity } from './base-entity.model';
 
 export class Group extends Entity {
+
   name: string;
-  numVotes: number;
-  numVotations: number;
+  number: number;
+  available_votes: number;
 
   getName() {
     return `${this.name}`;

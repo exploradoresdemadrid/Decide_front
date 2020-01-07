@@ -26,7 +26,7 @@ export class VoteService extends BaseEntityService<Vote> {
 
   getAPI(): EntityAPI {
     return {
-      path: '/Vote',
+      path: 'votings',
     };
   }
   getInitialState(): State<Vote> {
@@ -40,16 +40,21 @@ export class VoteService extends BaseEntityService<Vote> {
   }
 
   getVotes(){
-    const request = this.getRequest('votings')
+    const request = this.getRequest(this.getAPI().path)
     request.subscribe(votes => this.dispatchSuccess({ entities: this.createList(votes) }));
     return request
   }
 
   getVotingById(id:string){
-    const reuqets = this.getRequest('votings/' + id)
+    const reuqets = this.getRequest(this.getAPI().path + '/' + id)
     reuqets.subscribe(voting => this.dispatchSuccess({
       entities: this.upsertList(voting)
     }))
     return reuqets
+  }
+  sendVoting(vote){
+    const request = this.postRequest(this.getAPI().path +'/'+ vote.id+ '/vote', vote)
+    return request
+
   }
 }

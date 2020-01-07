@@ -1,5 +1,5 @@
 export abstract class Entity {
-  id: number;
+  id: string;
 
   constructor(data) {
     Object.assign(this, data);

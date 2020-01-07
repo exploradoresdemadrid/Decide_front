@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   { path: 'detail-vote', loadChildren: './detail-vote/detail-vote.module#DetailVotePageModule' },
   
-  { path: 'detail-vote/:id', loadChildren: './detail-vote/detail-vote.module#DetailVotePageModule' },
+  { path: 'detail-vote/:id', loadChildren: './detail-vote/detail-vote.module#DetailVotePageModule' },  { path: 'my-group', loadChildren: './my-group/my-group.module#MyGroupPageModule' },
+
 ];
 
 @NgModule({

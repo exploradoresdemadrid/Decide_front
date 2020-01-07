@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OverlaysService } from 'src/shared/overlays';
 import { VoteService, Vote } from 'src/entities/vote';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 
 @Component({
@@ -67,6 +67,7 @@ vote ={
     private overlay: OverlaysService,
     private voteService : VoteService,
     private route: ActivatedRoute,
+    private router :Router
   ) { }
 
   ngOnInit() {
@@ -87,8 +88,15 @@ vote ={
 
   senVoting(){
     if(!this.checkIsCorrectNumVotes()){
-      return 
+      this.overlay.presentError('Revisa tus votos, el numero de total de votos tiene que ser menor que el numero de votos que tienes asignados')
+      return
     }
+
+    // this.overlay.requestWithLoaderAndError(()=> this.voteService.sendVoting(this.vote)).subscribe(()=>{
+    //   this.overlay.presentSuccess('Perfecto tu votacion ha sido enviada')
+    // })
+    this.overlay.presentSuccess('Perfecto tu votacion ha sido enviada')
+    this.router.navigate(['/home'])
   }
 
   checkIsCorrectNumVotes(){
@@ -98,7 +106,6 @@ vote ={
       numTotal = 0
 
       question.options.forEach((vote:any) =>{
-        console.log(vote)
         if(vote.votes){
           numTotal = numTotal + parseFloat(vote.votes)
         }
@@ -109,9 +116,6 @@ vote ={
       }
 
     })    
-
-    console.log(isValid);
-    
     return isValid
   }
 

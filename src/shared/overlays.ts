@@ -107,6 +107,14 @@ export class OverlaysService {
     await alert.present();
   }
 
+  async presentSuccess(message){
+    const alert = await this.alertController.create({
+      message:  message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   async presentErrorMessage(message) {
     const alert = await this.alertController.create({
       message: message,

@@ -17,10 +17,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'Mi grupo',
+      url: '/my-group',
       icon: 'list'
-    }
+    },
+    {
+      title: 'Feedback',
+      url: '/list',
+      icon: 'help'
+    },    {
+      title: 'Cerrar sesion',
+      url: '/list',
+      icon: 'log-out></ion-icon>'
+    },
   ];
 
   constructor(

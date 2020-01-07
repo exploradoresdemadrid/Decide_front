@@ -1,0 +1,9 @@
+<ion-item>
+  {{option.title}}
+  <ion-range min="0" max="10" step="1" (ionChange)="getValueOption($event)">
+    <ion-icon size="small" slot="start" name="sunny"></ion-icon>
+    <ion-icon slot="end" name="sunny"></ion-icon>
+    
+  </ion-range>
+  {{numVotes}}/{{option.numVotes}}
+</ion-item>
